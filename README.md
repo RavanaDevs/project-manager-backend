@@ -1,3 +1,3 @@
-### Web Application Development Projec
+### Web Application Development Project
 
 > author: Kavindu Sanjula
