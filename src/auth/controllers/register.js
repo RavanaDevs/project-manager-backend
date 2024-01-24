@@ -1,5 +1,7 @@
 import User from '../../models/user.js';
 import { userSchemaValidator } from '../../models/user.js';
+import jwt from 'jsonwebtoken';
+import * as bcrypt from 'bcrypt';
 
 export const register = async (req, res, next) => {
   const data = userSchemaValidator.validate(req.body);
@@ -9,7 +11,20 @@ export const register = async (req, res, next) => {
     return res.json({ error: 'user exists' });
   }
 
+  const hashedPassword = await bcrypt.hash(data.value.password, 10);
+  data.value.password = hashedPassword;
+
   const user = new User(data.value);
   const u = await user.save();
-  res.json({ message: 'user created', user: u });
+
+  const secret = process.env.JWT_SECRET;
+  const payload = {
+    username: u.username,
+    email: u.email,
+    id: u._id,
+  };
+
+  const totke = jwt.sign(payload, secret);
+
+  res.json({ message: 'registration sucess', token: token });
 };
