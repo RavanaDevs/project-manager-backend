@@ -38,6 +38,7 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           build-args: MONGODB_CONN_STRING=${{ vars.MONGODB_CONN_STRING }}, PORT=${{ vars.PORT }}, JWT_SECRET=${{ vars.JWT_SECRET }}
+
   # update_ssh_linode:
   #   name: Telling Linode Server to Update
   #   needs: "push_to_registry"
