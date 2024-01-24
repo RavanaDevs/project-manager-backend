@@ -37,7 +37,7 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-          env:
+          secret-envs:
             MONGODB_CONN_STRING: ${{ vars.MONGODB_CONN_STRING }}
             PORT: ${{ vars.PORT }}
             JWT_SECRET: ${{ vars.JWT_SECRET }}
