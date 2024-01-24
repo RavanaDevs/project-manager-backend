@@ -5,11 +5,11 @@ export const register = async (req, res, next) => {
   const data = userSchemaValidator.validate(req.body);
 
   const e = await User.find({ email: data.value.email });
-  console.log(e);
-
-  return res.send("Hello");
+  if (e.length > 0) {
+    return res.json({ error: 'user exists' });
+  }
 
   const user = new User(data.value);
   const u = await user.save();
-  res.json(u);
+  res.json({ message: 'user created', user: u });
 };
