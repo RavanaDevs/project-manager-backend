@@ -21,9 +21,7 @@ jobs:
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        CONN_STR: ${{ vars.MONGODB_CONN_STRING }}
-        PORT: ${{ vars.PORT }}
-        SECRET: ${{ vars.JWT_SECRET }}
+        
       run: |
         docker build \
         --build-arg CONN_STR=${{ vars.MONGODB_CONN_STRING }} \
