@@ -26,9 +26,9 @@ jobs:
         SECRET: ${{ vars.JWT_SECRET }}
       run: |
         docker build \
-        -t $DOCKER_USERNAME/project-manager-backend .
+        -t kavindusanjula/project-manager-backend .
         echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
-        docker push $DOCKER_USERNAME/project-manager-backend
+        docker push kavindusanjula/project-manager-backend
 
   # update_ssh_linode:
   #   name: Telling Linode Server to Update
