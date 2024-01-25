@@ -26,6 +26,9 @@ jobs:
         SECRET: ${{ vars.JWT_SECRET }}
       run: |
         docker build \
+        --build-arg CONN_STR=${{ vars.MONGODB_CONN_STRING }} \
+        --build-arg PRT=${{ vars.PORT }} \
+        --build-arg TOK_SCR=${{ vars.JWT_SECRET }} \
         -t kavindusanjula/project-manager-backend .
         echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
         docker push kavindusanjula/project-manager-backend
