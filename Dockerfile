@@ -10,5 +10,8 @@ COPY . .
 
 EXPOSE 5000
 
+ENV MONGODB_CONN_STRING=${CONN_STR}
+ENV PORT=${PORT}
+ENV JWT_SECRET=${SECRET}
 
 CMD ["node", "src/server.js"]
