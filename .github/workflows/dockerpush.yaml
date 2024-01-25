@@ -22,7 +22,11 @@ jobs:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       run: |
-        docker build --build-arg MONGODB_CONN_STRING=${{ vars.MONGODB_CONN_STRING }} --build-arg PORT=${{ vars.PORT }} --build-arg JWT_SECRET=${{ vars.JWT_SECRET }} -t $DOCKER_USERNAME/project-manager-backend .
+        docker build \
+        -e MONGODB_CONN_STRING=${{ vars.MONGODB_CONN_STRING }} \
+        -e PORT=${{ vars.PORT }} \
+        -e JWT_SECRET=${{ vars.JWT_SECRET }} \
+        -t $DOCKER_USERNAME/project-manager-backend .
         echo $DOCKER_PASSWORD | docker login -u $DOCKER_USERNAME --password-stdin
         docker push $DOCKER_USERNAME/project-manager-backend
 
